@@ -17,8 +17,12 @@
     "http-status": "^1.5.1",
     "joi": "^17.6.0",
     "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.0",
     "morgan": "^1.10.0",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
     "validator": "^13.7.0",
     "winston": "^3.7.2"
   },

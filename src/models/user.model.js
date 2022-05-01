@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { toJSON, paginate } = require('./plugins');
 
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
@@ -133,16 +134,21 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-userSchema.set('toJSON', {
-    virtuals: true,
-    versionKey: true,
-    transform: function (doc, ret) {
-        // remove these props when object is serialized
-        delete ret._id;
-        //delete ret.password;
-        delete ret.password;
-    }
-});
+// add plugin that converts mongoose to json
+userSchema.plugin(toJSON);
+userSchema.plugin(paginate);
+
+
+// userSchema.set('toJSON', {
+//     virtuals: true,
+//     versionKey: true,
+//     transform: function (doc, ret) {
+//         // remove these props when object is serialized
+//         delete ret._id;
+//         //delete ret.password;
+//         delete ret.password;
+//     }
+// });
 
 /**
  * Check if email is taken
