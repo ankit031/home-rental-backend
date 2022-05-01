@@ -32,8 +32,15 @@ const getUser = catchAsync(async (req, res) => {
     res.send(user);
 });
 
+const updateUser = catchAsync(async (req, res) => {
+    const user = await userService.updateUserById(req.params.userId, req.body);
+    res.send(user);
+});
+
+
 module.exports = {
     createUser,
     getUser,
-    getUsers
+    getUsers,
+    updateUser
 };
