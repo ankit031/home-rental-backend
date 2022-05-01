@@ -1,6 +1,7 @@
 const express = require('express');
 // require('dotenv').config();
 const httpStatus = require('http-status');
+const passport = require('passport');
 
 const app = express();
 const routes = require('./routes/v1');
@@ -8,6 +9,7 @@ const morgan = require('./config/morgan');
 
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const { jwtStrategy } = require('./config/passport');
 
 // parse json request body
 app.use(express.json());
@@ -20,6 +22,9 @@ if (process.env.NODE_ENV !== 'test') {
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
+// jwt authentication
+app.use(passport.initialize());
+passport.use('jwt', jwtStrategy);
 
 // v1 api routes
 app.use('/v1', routes);

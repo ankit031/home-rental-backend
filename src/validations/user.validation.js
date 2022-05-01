@@ -43,7 +43,14 @@ const getUsers = {
     }),
 };
 
+const getUser = {
+    params: Joi.object().keys({
+        userId: Joi.string().custom(objectId),
+    }),
+};
+
 module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    getUser
 };
