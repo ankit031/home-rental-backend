@@ -2,6 +2,7 @@ const express = require('express');
 // require('dotenv').config();
 const httpStatus = require('http-status');
 const passport = require('passport');
+const cors = require('cors');
 
 const app = express();
 const routes = require('./routes/v1');
@@ -21,6 +22,10 @@ if (process.env.NODE_ENV !== 'test') {
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+
+// enable cors
+app.use(cors());
+app.options('*', cors());
 
 // jwt authentication
 app.use(passport.initialize());

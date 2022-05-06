@@ -68,6 +68,12 @@ const getUsers = {
     }),
 };
 
+const deleteUser = {
+    params: Joi.object().keys({
+        userId: Joi.string().custom(objectId),
+    }),
+};
+
 const getUser = {
     params: Joi.object().keys({
         userId: Joi.string().custom(objectId),
@@ -78,5 +84,6 @@ module.exports = {
     createUser,
     getUsers,
     getUser,
-    updateUser
+    updateUser,
+    deleteUser
 };

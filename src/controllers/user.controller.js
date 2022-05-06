@@ -24,6 +24,13 @@ const getUsers = catchAsync(async (req, res) => {
 
 // });
 
+const deleteUser = catchAsync(async (req, res) => {
+    await userService.deleteUserById(req.params.userId);
+    res.status(httpStatus.NO_CONTENT).send();
+    
+});
+
+
 const getUser = catchAsync(async (req, res) => {
     const user = await userService.getUserById(req.params.userId);
     if (!user) {
@@ -42,5 +49,6 @@ module.exports = {
     createUser,
     getUser,
     getUsers,
-    updateUser
+    updateUser,
+    deleteUser
 };
