@@ -33,6 +33,31 @@ const createUser = {
     }),
 };
 
+const updateUser = {
+    params: Joi.object().keys({
+        userId: Joi.required().custom(objectId),
+    }),
+    body: Joi.object()
+        .keys({
+            firstName: Joi.string(),
+            middleName: Joi.string(),
+            lastName: Joi.string(),
+            dateOfBirth: Joi.date().iso(),
+            gender: Joi.string().valid('Male', 'Female'),
+            countryCode: Joi.string(),
+            state: Joi.string(),
+            district: Joi.string(),
+            city: Joi.string(),
+            phone: Joi.number(),
+            alternatePhone: Joi.number(),
+            email: Joi.string().email(),
+            password: Joi.string().custom(password),
+            role: Joi.string().valid('renter', 'admin'),
+            userHouses: Joi.array().items(userHouses),
+            userRenters: Joi.array().items(userRenters)
+        })
+        .min(1),
+};
 const getUsers = {
     query: Joi.object().keys({
         name: Joi.string(),
@@ -40,6 +65,12 @@ const getUsers = {
         sortBy: Joi.string(),
         limit: Joi.number().integer(),
         page: Joi.number().integer(),
+    }),
+};
+
+const deleteUser = {
+    params: Joi.object().keys({
+        userId: Joi.string().custom(objectId),
     }),
 };
 
@@ -52,5 +83,7 @@ const getUser = {
 module.exports = {
     createUser,
     getUsers,
-    getUser
+    getUser,
+    updateUser,
+    deleteUser
 };
