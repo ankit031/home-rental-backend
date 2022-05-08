@@ -16,14 +16,6 @@ const getUsers = catchAsync(async (req, res) => {
     res.send(result);
 });
 
-
-// const getUser = catchAsync(async (req, res) => {
-//     // const user = await userService.createUser(req.body);
-//     // res.status(httpStatus.CREATED).send(user);
-//     res.send({ "name": "shreya" });
-
-// });
-
 const deleteUser = catchAsync(async (req, res) => {
     await userService.deleteUserById(req.params.userId);
     res.status(httpStatus.NO_CONTENT).send();
