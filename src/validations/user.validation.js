@@ -26,7 +26,7 @@ const createUser = {
         phone: Joi.number().required(),
         alternatePhone: Joi.number(),
         email: Joi.string().required().email(),
-        password: Joi.string().required().custom(password),
+        password: Joi.string().custom(password),
         role: Joi.string().required().valid('renter', 'admin'),
         userHouses: Joi.array().items(userHouses),
         userRenters: Joi.array().items(userRenters)
